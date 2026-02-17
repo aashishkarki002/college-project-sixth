@@ -1,0 +1,12 @@
+import { createRevenueController } from "./revenue.controller.js";
+import { getRevenueController } from "./revenue.controller.js";
+import { getAllRevenueController } from "./revenue.controller.js";
+import { getRevenueSourceController } from "./revenue.controller.js";
+import { Router } from "express";
+import { protect } from "../../middleware/protect.js";
+const router = Router();
+router.post("/create", protect, createRevenueController);
+router.get("/get/:id", protect, getRevenueController);
+router.get("/get-all", protect, getAllRevenueController);
+router.get("/get-revenue-source", protect, getRevenueSourceController);
+export default router;

@@ -1,0 +1,165 @@
+{
+  "description": "Dummy expense data for Postman testing. Replace ObjectIds with actual IDs from your database.",
+  "endpoint": "POST /api/expense/create",
+  "note": "The 'createdBy' field is automatically set from the authenticated admin, so you don't need to include it in the request body.",
+  
+  "examples": [
+    {
+      "name": "External Expense - Manual Payment",
+      "description": "Basic external expense with manual reference type",
+      "data": {
+        "source": "REPLACE_WITH_EXPENSE_SOURCE_ID",
+        "amount": 5000.00,
+        "EnglishDate": "2026-01-27T00:00:00.000Z",
+        "nepaliDate": "2026-01-27T00:00:00.000Z",
+        "nepaliMonth": 10,
+        "nepaliYear": 2082,
+        "payeeType": "EXTERNAL",
+        "referenceType": "MANUAL",
+        "status": "RECORDED",
+        "notes": "Office supplies purchase from vendor"
+      }
+    },
+    {
+      "name": "Tenant Expense - Maintenance",
+      "description": "Expense paid by tenant for maintenance",
+      "data": {
+        "source": "REPLACE_WITH_EXPENSE_SOURCE_ID",
+        "amount": 15000.00,
+        "EnglishDate": "2026-01-27T00:00:00.000Z",
+        "nepaliDate": "2026-01-27T00:00:00.000Z",
+        "nepaliMonth": 10,
+        "nepaliYear": 2082,
+        "payeeType": "TENANT",
+        "tenant": "REPLACE_WITH_TENANT_ID",
+        "referenceType": "MAINTENANCE",
+        "referenceId": "REPLACE_WITH_MAINTENANCE_ID",
+        "status": "RECORDED",
+        "notes": "Building maintenance charges"
+      }
+    },
+    {
+      "name": "External Expense - Utility Payment",
+      "description": "External expense for utility bills",
+      "data": {
+        "source": "REPLACE_WITH_EXPENSE_SOURCE_ID",
+        "amount": 25000.00,
+        "EnglishDate": "2026-01-27T00:00:00.000Z",
+        "nepaliDate": "2026-01-27T00:00:00.000Z",
+        "nepaliMonth": 10,
+        "nepaliYear": 2082,
+        "payeeType": "EXTERNAL",
+        "referenceType": "UTILITY",
+        "referenceId": "REPLACE_WITH_UTILITY_ID",
+        "status": "SYNCED",
+        "notes": "Monthly electricity bill payment"
+      }
+    },
+    {
+      "name": "External Expense - Salary Payment",
+      "description": "Salary payment to staff",
+      "data": {
+        "source": "REPLACE_WITH_EXPENSE_SOURCE_ID",
+        "amount": 75000.00,
+        "EnglishDate": "2026-01-27T00:00:00.000Z",
+        "nepaliDate": "2026-01-27T00:00:00.000Z",
+        "nepaliMonth": 10,
+        "nepaliYear": 2082,
+        "payeeType": "EXTERNAL",
+        "referenceType": "SALARY",
+        "referenceId": "REPLACE_WITH_SALARY_ID",
+        "status": "RECORDED",
+        "notes": "Monthly salary payment for staff"
+      }
+    },
+    {
+      "name": "Tenant Expense - Manual Payment",
+      "description": "Manual expense paid by tenant",
+      "data": {
+        "source": "REPLACE_WITH_EXPENSE_SOURCE_ID",
+        "amount": 8000.00,
+        "EnglishDate": "2026-01-27T00:00:00.000Z",
+        "nepaliDate": "2026-01-27T00:00:00.000Z",
+        "nepaliMonth": 10,
+        "nepaliYear": 2082,
+        "payeeType": "TENANT",
+        "tenant": "REPLACE_WITH_TENANT_ID",
+        "referenceType": "MANUAL",
+        "status": "RECORDED",
+        "notes": "Additional charges for tenant"
+      }
+    },
+    {
+      "name": "External Expense - Minimal Required Fields",
+      "description": "Minimal expense with only required fields",
+      "data": {
+        "source": "REPLACE_WITH_EXPENSE_SOURCE_ID",
+        "amount": 3000.00,
+        "nepaliDate": "2026-01-27T00:00:00.000Z",
+        "nepaliMonth": 10,
+        "nepaliYear": 2082,
+        "payeeType": "EXTERNAL"
+      }
+    },
+    {
+      "name": "External Expense - Different Nepali Month",
+      "description": "Expense for different Nepali month",
+      "data": {
+        "source": "REPLACE_WITH_EXPENSE_SOURCE_ID",
+        "amount": 12000.00,
+        "EnglishDate": "2026-01-27T00:00:00.000Z",
+        "nepaliDate": "2026-01-27T00:00:00.000Z",
+        "nepaliMonth": 11,
+        "nepaliYear": 2082,
+        "payeeType": "EXTERNAL",
+        "referenceType": "MANUAL",
+        "status": "RECORDED",
+        "notes": "Monthly office rent"
+      }
+    },
+    {
+      "name": "Tenant Expense - With All Fields",
+      "description": "Complete tenant expense with all optional fields",
+      "data": {
+        "source": "REPLACE_WITH_EXPENSE_SOURCE_ID",
+        "amount": 20000.00,
+        "EnglishDate": "2026-01-27T00:00:00.000Z",
+        "nepaliDate": "2026-01-27T00:00:00.000Z",
+        "nepaliMonth": 10,
+        "nepaliYear": 2082,
+        "payeeType": "TENANT",
+        "tenant": "REPLACE_WITH_TENANT_ID",
+        "referenceType": "MAINTENANCE",
+        "referenceId": "REPLACE_WITH_MAINTENANCE_ID",
+        "status": "SYNCED",
+        "notes": "Complete maintenance expense with all details including tenant information and reference"
+      }
+    }
+  ],
+  
+  "fieldDescriptions": {
+    "source": "ObjectId of ExpenseSource (required) - Get from ExpenseSource collection",
+    "amount": "Number, minimum 0 (required)",
+    "EnglishDate": "ISO date string (optional, defaults to current date)",
+    "nepaliDate": "ISO date string (required)",
+    "nepaliMonth": "Number 1-12 (required)",
+    "nepaliYear": "Number (required)",
+    "payeeType": "String enum: 'TENANT' or 'EXTERNAL' (required)",
+    "tenant": "ObjectId of Tenant (required if payeeType is 'TENANT')",
+    "referenceType": "String enum: 'MAINTENANCE', 'UTILITY', 'SALARY', 'MANUAL' (optional, defaults to 'MANUAL')",
+    "referenceId": "ObjectId (required if referenceType is 'MAINTENANCE', 'UTILITY', or 'SALARY')",
+    "status": "String enum: 'RECORDED' or 'SYNCED' (optional, defaults to 'RECORDED')",
+    "notes": "String (optional)",
+    "createdBy": "Automatically set from authenticated admin - DO NOT include in request"
+  },
+  
+  "postmanInstructions": {
+    "method": "POST",
+    "url": "http://localhost:YOUR_PORT/api/expense/create",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer YOUR_AUTH_TOKEN"
+    },
+    "body": "Use one of the examples above in the 'data' field, replacing placeholder IDs with actual ObjectIds from your database"
+  }
+}
